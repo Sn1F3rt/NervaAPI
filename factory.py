@@ -79,9 +79,21 @@ def create_app() -> Quart:
         app.config["MONGODB_DB"]
     ]
 
+    @app.errorhandler(400)
+    async def _handle_bad_request(_: Exception) -> tuple[Response, int]:
+        return jsonify({"error": "Bad request"}), 400
+
     @app.errorhandler(404)
     async def _handle_not_found(_: Exception) -> tuple[Response, int]:
         return jsonify({"error": "Resource not found"}), 404
+
+    @app.errorhandler(405)
+    async def _handle_method_not_allowed(_: Exception) -> tuple[Response, int]:
+        return jsonify({"error": "Method not allowed"}), 405
+
+    @app.errorhandler(429)
+    async def _handle_too_many_requests(_: Exception) -> tuple[Response, int]:
+        return jsonify({"error": "Too many requests"}), 429
 
     @app.errorhandler(500)
     async def _handle_server_error(_: Exception) -> tuple[Response, int]:
