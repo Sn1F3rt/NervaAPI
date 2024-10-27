@@ -76,8 +76,10 @@ uv run launcher.py
 or if you have `make` installed
 
 ```shell
-make
+make run
 ```
+
+The API server will be running at `http://localhost:8000`.
 
 ### Production
 
