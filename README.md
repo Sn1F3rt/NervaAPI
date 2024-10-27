@@ -21,6 +21,7 @@ NervaAPI is a RESTful API server for the Nerva blockchain. It provides a simple 
 - Git
 - Python >= 3.8
 - MongoDB database
+- [make](https://www.gnu.org/software/make/) (optional)
 
 ## Installation
 
@@ -38,10 +39,26 @@ NervaAPI is a RESTful API server for the Nerva blockchain. It provides a simple 
     cd NervaAPI
    ```
    
-4. Install dependencies
+4. Create a virtual environment
+
+   ```shell
+   uv venv
+   ```
+   or if you have `make` installed
+
+   ```shell
+   make env
+   ```
+   
+5. Install dependencies
 
    ```shell
     uv sync --no-dev
+   ```
+   or if you have `make` installed
+
+   ```shell
+   make prod
    ```
 
 ## Configuration
@@ -50,9 +67,33 @@ Copy the [`config.example.py`](config.example.py) file to `config.py` and update
 
 ## Running
 
+### Development
+
 ```shell
 uv run launcher.py
 ```
+
+or if you have `make` installed
+
+```shell
+make
+```
+
+### Production
+
+```shell
+source .venv/bin/activate
+hypercorn --bind 0.0.0.0:8000 launcher:app
+```
+
+or if you want to enable SSL support
+
+```shell
+source .venv/bin/activate
+hypercorn --certfile cert.pem --keyfile key.pem --bind 0.0.0.0:8000 launcher:app
+```
+
+The API server will be running at `http://localhost:8000`. The certificate and key files are required for SSL support.
 
 ## License
 

@@ -1,4 +1,7 @@
 env:
+	uv venv
+
+prod:
 	uv sync --no-dev
 
 dev:
