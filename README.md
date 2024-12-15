@@ -42,23 +42,13 @@ NervaAPI is a RESTful API server for the Nerva blockchain. It provides a simple 
 4. Create a virtual environment
 
    ```shell
-   uv venv
-   ```
-   or if you have `make` installed
-
-   ```shell
-   make env
+   uv venv # or make env
    ```
    
 5. Install dependencies
 
    ```shell
-    uv sync --no-dev
-   ```
-   or if you have `make` installed
-
-   ```shell
-   make prod
+    uv sync --no-dev # or make install
    ```
 
 ## Configuration
@@ -70,13 +60,7 @@ Copy the [`config.example.py`](config.example.py) file to `config.py` and update
 ### Development
 
 ```shell
-uv run launcher.py
-```
-
-or if you have `make` installed
-
-```shell
-make run
+uv run launcher.py # or make dev
 ```
 
 The API server will be running at `http://localhost:8000`.
@@ -84,14 +68,14 @@ The API server will be running at `http://localhost:8000`.
 ### Production
 
 ```shell
-source .venv/bin/activate
+source .venv/bin/activate # or make activate
 hypercorn --bind 0.0.0.0:8000 launcher:app
 ```
 
 or if you want to enable SSL support
 
 ```shell
-source .venv/bin/activate
+source .venv/bin/activate # or make activate
 hypercorn --certfile cert.pem --keyfile key.pem --bind 0.0.0.0:8000 launcher:app
 ```
 
