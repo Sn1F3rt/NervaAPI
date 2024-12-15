@@ -13,6 +13,9 @@ install:
 install-dev:
 	uv sync --all-extras
 
+install-speed:
+	uv sync --all-extras --no-dev
+
 dev:
 	uv run launcher.py
 
